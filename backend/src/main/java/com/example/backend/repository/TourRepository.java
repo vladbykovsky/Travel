@@ -12,6 +12,7 @@ import java.util.List;
 public interface TourRepository extends CrudRepository<Tour, Integer> {
 
     List<Tour> getAllByTransport(String transport);
-    List<Tour> getTourByHotelByIdHotel(Hotel hotel);
+    List<Tour> getAllByHotelId(int id);
+    List<Tour> getAllByCountryId(int id);
 
 }

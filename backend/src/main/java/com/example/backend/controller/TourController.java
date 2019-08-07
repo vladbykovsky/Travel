@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,5 +27,21 @@ public class TourController {
             return  ResponseEntity.notFound().build();
         }
     }
+
+    @RequestMapping(value = "/hotelId/{id}", method = RequestMethod.GET)
+    public List<Tour> getToursByHotelId(@PathVariable(name = "id") int id) {
+        return (List<Tour>) tourService.getAllByHotelId(id);
+    }
+
+    @RequestMapping(value = "/countryId/{id}", method = RequestMethod.GET)
+    public List<Tour> getToursByCountryId(@PathVariable(name = "id") int id) {
+        return (List<Tour>) tourService.getAllByCountryId(id);
+    }
+
+    @RequestMapping(value = "/transport/{transport}", method = RequestMethod.GET)
+    public List<Tour> getToursByTransport(@PathVariable(name = "transport") String transport) {
+        return (List<Tour>) tourService.getAllByTransport(transport);
+    }
+
 
 }

@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tour", schema = "travel_agency", catalog = "")
 public class Tour {
     private int idTour;
     private String price;
     private String time;
     private String date;
     private String transport;
-    private Hotel hotel;
+    private String description;
+    private int hotelId;
+    private int countryId;
 
     @Id
     @Column(name = "id_tour")
@@ -63,30 +64,74 @@ public class Tour {
         this.transport = transport;
     }
 
+    @Basic
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Basic
+    @Column(name = "id_hotel")
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
+
+
+    @Basic
+    @Column(name = "country_id")
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Tour that = (Tour) o;
-        return idTour == that.idTour &&
-                Objects.equals(price, that.price) &&
-                Objects.equals(time, that.time) &&
-                Objects.equals(date, that.date) &&
-                Objects.equals(transport, that.transport);
+        Tour tour = (Tour) o;
+        return idTour == tour.idTour &&
+                hotelId == tour.hotelId &&
+                countryId == tour.countryId &&
+                Objects.equals(price, tour.price) &&
+                Objects.equals(time, tour.time) &&
+                Objects.equals(date, tour.date) &&
+                Objects.equals(transport, tour.transport) &&
+                Objects.equals(description, tour.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idTour, price, time, date, transport);
+        return Objects.hash(idTour, price, time, date, transport, description, hotelId, countryId);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_hotel", referencedColumnName = "id_hotel", nullable = false)
-    public Hotel getHotelByIdHotel() {
-        return hotel;
-    }
-
-    public void setHotelByIdHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
+    //    @ManyToOne
+//    @JoinColumn(name = "id_hotel", referencedColumnName = "id_hotel", nullable = false)
+//    public Hotel getHotelByIdHotel() {
+//        return hotelByIdHotel;
+//    }
+//
+//    public void setHotelByIdHotel(Hotel hotelByIdHotel) {
+//        this.hotelByIdHotel = hotelByIdHotel;
+//    }
+//
+//    @ManyToOne
+//    @JoinColumn(name = "country_id", referencedColumnName = "id_country")
+//    public Country getCountryByCountryId() {
+//        return countryByCountryId;
+//    }
+//
+//    public void setCountryByCountryId(Country countryByCountryId) {
+//        this.countryByCountryId = countryByCountryId;
+//    }
 }

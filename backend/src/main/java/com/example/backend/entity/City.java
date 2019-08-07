@@ -1,25 +1,26 @@
 package com.example.backend.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-@Table(name = "city", schema = "travel_agency", catalog = "")
 public class City {
-    private int cityId;
+    private int idCity;
     private String name;
-    private int distance;
+    private String distance;
     private String description;
-    private int countryId;
 
     @Id
     @Column(name = "id_city")
-    public int getCityId() {
-        return cityId;
+    public int getIdCity() {
+        return idCity;
     }
 
-    public void setCityId(int idCity) {
-        this.cityId = idCity;
+    public void setIdCity(int idCity) {
+        this.idCity = idCity;
     }
 
     @Basic
@@ -34,11 +35,11 @@ public class City {
 
     @Basic
     @Column(name = "distance")
-    public int getDistance() {
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 
@@ -52,28 +53,19 @@ public class City {
         this.description = description;
     }
 
-    public int getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         City city = (City) o;
-        return cityId == city.cityId &&
-                distance == city.distance &&
-                countryId == city.countryId &&
+        return idCity == city.idCity &&
                 Objects.equals(name, city.name) &&
+                Objects.equals(distance, city.distance) &&
                 Objects.equals(description, city.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cityId, name, distance, description, countryId);
+        return Objects.hash(idCity, name, distance, description);
     }
 }

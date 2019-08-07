@@ -1,23 +1,26 @@
 package com.example.backend.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-@Table(name = "country", schema = "travel_agency", catalog = "")
 public class Country {
-    private int countryId;
+    private int idCountry;
     private String name;
     private String description;
+    private String distance;
 
     @Id
     @Column(name = "id_country")
-    public int getCountryId() {
-        return countryId;
+    public int getIdCountry() {
+        return idCountry;
     }
 
-    public void setCountryId(int idCountry) {
-        this.countryId = idCountry;
+    public void setIdCountry(int idCountry) {
+        this.idCountry = idCountry;
     }
 
     @Basic
@@ -40,18 +43,29 @@ public class Country {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "distance")
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Country that = (Country) o;
-        return countryId == that.countryId &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(description, that.description);
+        Country country = (Country) o;
+        return idCountry == country.idCountry &&
+                Objects.equals(name, country.name) &&
+                Objects.equals(description, country.description) &&
+                Objects.equals(distance, country.distance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(countryId, name, description);
+        return Objects.hash(idCountry, name, description, distance);
     }
 }

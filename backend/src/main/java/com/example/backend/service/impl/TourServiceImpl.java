@@ -30,8 +30,13 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public List<Tour> getTourByHotelByIdHotel(Hotel hotel) {
-        return tourRepository.getTourByHotelByIdHotel(hotel);
+    public List<Tour> getAllByHotelId(int id) {
+        return tourRepository.getAllByHotelId(id);
+    }
+
+    @Override
+    public List<Tour> getAllByCountryId(int id) {
+        return tourRepository.getAllByCountryId(id);
     }
 
     @Override

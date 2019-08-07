@@ -17,6 +17,11 @@ public class FoodServiceImpl implements FoodService {
     public FoodServiceImpl(FoodRepository foodRepository){this.foodRepository = foodRepository;}
 
     @Override
+    public Food findById(int id) {
+        return foodRepository.findById(id);
+    }
+
+    @Override
     public List<Food> findAll() {
         return foodRepository.findAll();
     }

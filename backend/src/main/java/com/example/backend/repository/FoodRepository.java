@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface FoodRepository extends CrudRepository<Food, Integer> {
 
+    Food findById(int id);
     List<Food> findAll();
     Food findByType(String type);
 

@@ -4,14 +4,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "hotel", schema = "travel_agency", catalog = "")
 public class Hotel {
     private int idHotel;
     private String name;
     private String level;
     private String description;
-    private City city;
-    private Food food;
+    private int cityId;
+    private int foodId;
 
     @Id
     @Column(name = "id_hotel")
@@ -53,39 +52,51 @@ public class Hotel {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "city_id")
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
+    @Basic
+    @Column(name = "food_id")
+    public int getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Hotel that = (Hotel) o;
-        return idHotel == that.idHotel &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(level, that.level) &&
-                Objects.equals(description, that.description);
+        Hotel hotel = (Hotel) o;
+        return idHotel == hotel.idHotel &&
+                cityId == hotel.cityId &&
+                Objects.equals(name, hotel.name) &&
+                Objects.equals(level, hotel.level) &&
+                Objects.equals(description, hotel.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idHotel, name, level, description);
+        return Objects.hash(idHotel, name, level, description, cityId);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "city_id", referencedColumnName = "id_city", nullable = false)
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City cityByCityId) {
-        this.city = cityByCityId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "food_id", referencedColumnName = "id_food", nullable = false)
-    public Food getFood() {
-        return food;
-    }
-
-    public void setFood(Food foodByFoodId) {
-        this.food = foodByFoodId;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "food_id", referencedColumnName = "id_food", nullable = false)
+//    public Food getFoodByFoodId() {
+//        return foodByFoodId;
+//    }
+//
+//    public void setFoodByFoodId(Food foodByFoodId) {
+//        this.foodByFoodId = foodByFoodId;
+//    }
 }

@@ -4,35 +4,34 @@
 <nav class="site-header sticky-top py-1">
   <div class="container d-flex flex-column flex-md-row justify-content-between">
 
-    <div class="dropdown">
-      <button class="btn text-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Каталог
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Страны</a>
-      </div>
+    <div>
+      <a class="btn text-light" href="#" routerLink="/">
+        Главная
+      </a>
     </div>
 
     <div class="dropdown">
       <button class="btn text-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Страны
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#" routerLink="/countries">Все страны</a>
+        <div *ngFor="let country of countries">
+          <a class="dropdown-item" href="#" [routerLink]="['/country/', country.idCountry]">{{country.name}}</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <a class="btn text-light" href="#" routerLink="/air-tour">
         Авиатуры
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
+      </a>
     </div>
 
-    <div class="dropdown">
-      <button class="btn text-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div>
+      <a class="btn text-light" href="#" routerLink="/bus-tour">
         Автобусные туры
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
+      </a>
     </div>
 
     <div class="dropdown">
@@ -58,4 +57,7 @@
 
   </div>
 </nav>
+
+
+
 

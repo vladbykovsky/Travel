@@ -10,7 +10,8 @@ public interface TourService {
 
     Optional<Tour> findById(int id);
     List<Tour> getAllByTransport(String transport);
-    List<Tour> getTourByHotelByIdHotel(Hotel hotel);
+    List<Tour> getAllByHotelId(int id);
+    List<Tour> getAllByCountryId(int id);
     Tour saveTour(Tour tour);
     void deleteTour(int id);
 

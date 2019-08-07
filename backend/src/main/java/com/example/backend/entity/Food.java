@@ -1,10 +1,12 @@
 package com.example.backend.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-@Table(name = "food", schema = "travel_agency", catalog = "")
 public class Food {
     private int idFood;
     private String type;
@@ -44,10 +46,10 @@ public class Food {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Food that = (Food) o;
-        return idFood == that.idFood &&
-                Objects.equals(type, that.type) &&
-                Objects.equals(description, that.description);
+        Food food = (Food) o;
+        return idFood == food.idFood &&
+                Objects.equals(type, food.type) &&
+                Objects.equals(description, food.description);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.entity.City;
-import com.example.backend.entity.Food;
 import com.example.backend.entity.Hotel;
 import com.example.backend.repository.HotelRepository;
 import com.example.backend.service.HotelService;
@@ -19,13 +17,8 @@ public class HotelServiceImpl implements HotelService {
     public HotelServiceImpl(HotelRepository hotelRepository){this.hotelRepository = hotelRepository;}
 
     @Override
-    public List<Hotel> findByCity(City city) {
-        return hotelRepository.findByCity(city);
-    }
-
-    @Override
-    public List<Hotel> findAllByCityAndFood(City city, Food food) {
-        return hotelRepository.findAllByCityAndFood(city, food);
+    public Hotel findByIdHotel(int id) {
+        return hotelRepository.findByIdHotel(id);
     }
 
     @Override
@@ -34,8 +27,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<Hotel> findAllByCityAndLevel(City city, String level) {
-        return hotelRepository.findAllByCityAndLevel(city, level);
+    public List<Hotel> findAllByFoodId(int id) {
+        return hotelRepository.findAllByFoodId(id);
     }
 
     @Override
