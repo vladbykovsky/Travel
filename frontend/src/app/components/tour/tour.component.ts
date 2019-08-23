@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {TourService} from "../../services/tour.service";
 import {TourModel} from "../../models/tour.model";
 import {ActivatedRoute} from "@angular/router";
@@ -10,6 +10,7 @@ import {FoodService} from "../../services/food.service";
 import {FoodModel} from "../../models/food.model";
 import {CityModel} from "../../models/city.model";
 import {CityService} from "../../services/city.service";
+import {BsModalRef, BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-tour',
@@ -23,12 +24,15 @@ export class TourComponent implements OnInit {
   public hotel: HotelModel;
   public food: FoodModel;
   public city: CityModel;
+  public modalRef: BsModalRef;
+  flag:boolean = false;
 
   constructor(private tourService: TourService,
               private countryService: CountryService,
               private hotelService: HotelService,
               private foodService: FoodService,
               private cityService: CityService,
+              private modalService: BsModalService,
               private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -36,10 +40,14 @@ export class TourComponent implements OnInit {
     this.loadTour(id);
   }
 
+  confirm():void{
+    this.flag = true;
+  }
+
   public loadTour(id: number):void{
     this.tourService.getTourById(id).subscribe((value:TourModel)=>{
       this.tour = value;
-      this.loadCountryById(this.tour.countryId);
+      // this.loadCountryById(this.tour.countryId);
       this.loadHotelById(this.tour.hotelId);
     })
   }
@@ -68,6 +76,19 @@ export class TourComponent implements OnInit {
     this.cityService.getCityById(id).subscribe((value:CityModel)=>{
       this.city = value;
     })
+  }
+
+  public _openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  public _openNewModal(template: TemplateRef<any>): void {
+    this.modalRef.hide();
+    this.modalRef = this.modalService.show(template);
+  }
+
+  public _closeModal(): void {
+    this.modalRef.hide();
   }
 
 }

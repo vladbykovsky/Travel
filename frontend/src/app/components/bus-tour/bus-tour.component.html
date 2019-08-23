@@ -20,10 +20,10 @@
       <div class="card flex-md-row mb-4 box-shadow h-md-250">
         <div *ngIf="tours"  class="card-body d-flex flex-column align-items-start">
           <div style="padding: 5px">
-            <a href="#" [routerLink]="['/tour/', tour.idTour]">Автобусный тур с отдыхом в
-               на {{tour.time}} дней</a>
+            <h3 class="text-center">{{tour.country.name}}</h3>
+            <h5>Автобусный тур в {{tour.city.name}} на {{tour.time}} дней</h5>
             <p>Цена: {{tour.price}}$</p>
-            <p>{{tour.time}} дней в + экскрурсии</p>
+            <button class="btn btn-dark" [routerLink]="['/tour/', tour.idTour]">Подробнее</button>
           </div>
         </div>
       </div>
@@ -32,3 +32,22 @@
 
   </div>
 </div>
+
+<nav *ngIf="totalPages" aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <a class="text-dark btn">Страница</a>
+    <li class="page-item">
+      <a *ngIf="page!==0" class="page-link" (click)="goPrev(page)">Пред.</a></li>
+    <li *ngFor="let pages of totalPages; let i = index" class="page-item">
+      <a class="page-link" (click)="goPage(i)">{{i+1}}</a></li>
+    <li *ngIf="page!==totalPages.length-1" class="page-item">
+      <a class="page-link" (click)="goNext(page)">След.</a></li>
+    <a class="text-dark btn">Кол-во на странце</a>
+    <select name="pageSize"
+            [(ngModel)]="size" (ngModelChange)="getBusTours()" class="form-control" style="width: 200px">
+      <option value="4">4</option>
+      <option value="8">8</option>
+      <option value="16" selected>16</option>
+    </select>
+  </ul>
+</nav>

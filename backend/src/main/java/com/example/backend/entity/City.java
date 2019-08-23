@@ -1,9 +1,6 @@
 package com.example.backend.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +9,7 @@ public class City {
     private String name;
     private String distance;
     private String description;
+    private Country country;
 
     @Id
     @Column(name = "id_city")
@@ -68,4 +66,15 @@ public class City {
     public int hashCode() {
         return Objects.hash(idCity, name, distance, description);
     }
+
+    @ManyToOne
+    @JoinColumn(name = "country_id", referencedColumnName = "id_country")
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
 }

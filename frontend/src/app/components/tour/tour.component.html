@@ -3,25 +3,64 @@
   <div class="col-md-12" style="margin-top: 24px">
     <div class="card flex-md-row mb-4 box-shadow h-md-250">
       <div class="card-body d-flex flex-column align-items-start">
-        <div *ngIf="tour && country" style="padding: 5px">
-          <h5 class="text-center" *ngIf="tour.transport == 'Автобус'">Автобусный тур с отдыхом в {{country.name}}</h5>
-          <h6 *ngIf="tour.transport == 'Самолет'">Тур с перелетом в {{country.name}}</h6>
+        <div *ngIf="tour" style="padding: 5px">
+          <h5 class="text-center" *ngIf="tour.transport == 'Автобус'">Автобусный тур с отдыхом в {{tour.country.name}}</h5>
+          <h6 *ngIf="tour.transport == 'Самолет'">Тур с перелетом в {{tour.country.name}}</h6>
           <h6 class="text-center">Страна</h6>
-          <p>{{country.description}}</p>
-          <h6 class="text-center">Описание</h6>
+          <p>{{tour.country.description}}</p>
+          <h6 class="text-center">Описание тура</h6>
           <p>{{hotel.description}}</p>
-          <p>Город тура: {{city.name}}, расстояние от Минска {{city.distance}}. На {{tour.time}} дней</p>
-          <p>Отель {{hotel.name}}, уровень {{hotel.level}}.</p>
+          <p>Город тура: {{city.name}}, расстояние от Минска {{city.distance}}км. На {{tour.time}} дней</p>
+          <p>Отель {{hotel.name}}, {{hotel.level}} звезды.</p>
           <p>Питание: {{food.type}}, {{food.description}}.</p>
           <p>Дата выезда: {{tour.date}}</p>
           <p></p>
           <p>Цена: {{tour.price}}$</p>
         </div>
         <div class="justify-content-center">
-          <button class="btn btn-dark" routerLink="/reservation">Забронировать</button>
+          <button class="btn btn-dark" (click)="_openModal(template1)">Забронировать</button>
         </div>
       </div>
     </div>
   </div>
   </div>
 </div>
+
+<ng-template #template1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="m-4 text-center">
+        <h3>Бронирование</h3><br>
+        <h5>Пожалуйста введите свои данные:</h5>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputName1">Имя</label>
+            <input type="Name" class="form-control" id="exampleInputName1" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Почта</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPhone1">Телефон</label>
+            <input type="phone" class="form-control" id="exampleInputPhone1" placeholder="Phone">
+          </div>
+        </form>
+        <button class="btn btn-dark" (click)="_openNewModal(template2)">Подтвердить</button>
+      </div>
+    </div>
+  </div>
+
+
+</ng-template>
+<ng-template #template2>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="m-4 text-center">
+        <h3>Вы забронировали тур</h3>
+        <p>В ближайшее время вам придет письмо на почту или с вами свяжуться по телефону!</p>
+        <button class="btn btn-dark" routerLink="/" (click)="_closeModal()">На главную</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

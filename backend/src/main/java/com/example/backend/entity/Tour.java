@@ -12,7 +12,8 @@ public class Tour {
     private String transport;
     private String description;
     private int hotelId;
-    private int countryId;
+    private Country country;
+    private City city;
 
     @Id
     @Column(name = "id_tour")
@@ -84,38 +85,20 @@ public class Tour {
         this.hotelId = hotelId;
     }
 
+//
+//    @Basic
+//    @Column(name = "country_id")
+//    public int getCountryId() {
+//        return countryId;
+//    }
+//
+//    public void setCountryId(int countryId) {
+//        this.countryId = countryId;
+//    }
 
-    @Basic
-    @Column(name = "country_id")
-    public int getCountryId() {
-        return countryId;
-    }
 
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Tour tour = (Tour) o;
-        return idTour == tour.idTour &&
-                hotelId == tour.hotelId &&
-                countryId == tour.countryId &&
-                Objects.equals(price, tour.price) &&
-                Objects.equals(time, tour.time) &&
-                Objects.equals(date, tour.date) &&
-                Objects.equals(transport, tour.transport) &&
-                Objects.equals(description, tour.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idTour, price, time, date, transport, description, hotelId, countryId);
-    }
-
-    //    @ManyToOne
+//        @ManyToOne
 //    @JoinColumn(name = "id_hotel", referencedColumnName = "id_hotel", nullable = false)
 //    public Hotel getHotelByIdHotel() {
 //        return hotelByIdHotel;
@@ -124,14 +107,24 @@ public class Tour {
 //    public void setHotelByIdHotel(Hotel hotelByIdHotel) {
 //        this.hotelByIdHotel = hotelByIdHotel;
 //    }
-//
-//    @ManyToOne
-//    @JoinColumn(name = "country_id", referencedColumnName = "id_country")
-//    public Country getCountryByCountryId() {
-//        return countryByCountryId;
-//    }
-//
-//    public void setCountryByCountryId(Country countryByCountryId) {
-//        this.countryByCountryId = countryByCountryId;
-//    }
+
+    @ManyToOne
+    @JoinColumn(name = "country_id", referencedColumnName = "id_country")
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "id_city")
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 }

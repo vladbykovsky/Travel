@@ -16,6 +16,9 @@ import { ToursByCountryComponent } from './components/tours-by-country/tours-by-
 import { BusTourComponent } from './components/bus-tour/bus-tour.component';
 import { AirTourComponent } from './components/air-tour/air-tour.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
+import { BsDropdownModule, ModalModule, TooltipModule} from "ngx-bootstrap";
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const appRoutes: Routes = [
   {path: '', component:HomeComponent},
@@ -26,7 +29,9 @@ const appRoutes: Routes = [
   {path: 'country/:id', component: ToursByCountryComponent},
   {path: 'bus-tour', component: BusTourComponent},
   {path: 'air-tour', component: AirTourComponent},
-  {path: 'reservation', component: ReservationComponent}
+  {path: 'reservation', component: ReservationComponent},
+  {path: 'contacts', component: ContactsComponent},
+  {path: '**', component:ErrorComponent}
 ];
 
 @NgModule({
@@ -41,14 +46,19 @@ const appRoutes: Routes = [
     ToursByCountryComponent,
     BusTourComponent,
     AirTourComponent,
-    ReservationComponent
+    ReservationComponent,
+    ContactsComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

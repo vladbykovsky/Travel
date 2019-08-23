@@ -43,16 +43,6 @@ public class Country {
         this.description = description;
     }
 
-    @Basic
-    @Column(name = "distance")
-    public String getDistance() {
-        return distance;
-    }
-
-    public void setDistance(String distance) {
-        this.distance = distance;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,12 +50,11 @@ public class Country {
         Country country = (Country) o;
         return idCountry == country.idCountry &&
                 Objects.equals(name, country.name) &&
-                Objects.equals(description, country.description) &&
-                Objects.equals(distance, country.distance);
+                Objects.equals(description, country.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idCountry, name, description, distance);
+        return Objects.hash(idCountry, name, description);
     }
 }

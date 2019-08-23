@@ -1,0 +1,64 @@
+<div style="background-color: lightgrey; padding-top: 40px; padding-bottom: 40px">
+  <h2 class="text-center">Туры</h2>
+</div>
+<div *ngIf="tours" class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <a class="text-dark btn">Сортировать по</a>
+      <select name="sort"
+              [(ngModel)]="sort" (ngModelChange)="loadAllByCountryId()" class="form-control">
+        <option value="time">Кол-во дней</option>
+        <option value="price">Цене</option>
+        <option value="idTour" selected>Новизне</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <a class="text-dark btn">Порядок</a>
+      <select name="order"
+              [(ngModel)]="order" (ngModelChange)="loadAllByCountryId()" class="form-control">
+        <option *ngIf="sort == 'price'" value="low">Дешевле-Дороже</option>
+        <option *ngIf="sort == 'price'" value="high">Дороже-Дешевле</option>
+
+        <option *ngIf="sort == 'time'" value="low">Короткие-Длинные</option>
+        <option *ngIf="sort == 'time'" value="high">Длинные-Короткие</option>
+
+        <option *ngIf="sort == 'idTour'" value="low">Старые-Новые</option>
+        <option *ngIf="sort == 'idTour'" value="high">Новые-Старые</option>
+      </select>
+    </div>
+    <div *ngFor="let tour of tours" class="col-md-12" style="margin-top: 24px">
+      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <div style="padding: 5px">
+            <h3 class="text-center">{{tour.country.name}}</h3>
+            <h5 *ngIf="tour.transport == 'Автобус'">Автобусный тур с отдыхом в
+              {{tour.city.name}}</h5>
+            <h5 *ngIf="tour.transport == 'Самолет'">Тур с перелетом в {{tour.city.name}}</h5>
+            <p>Цена: {{tour.price}}$</p>
+            <p>{{tour.time}} дней в {{tour.city.name}} + экскрурсии</p>
+            <button class="btn btn-dark" [routerLink]="['/tour/', tour.idTour]">Подробнее</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<nav *ngIf="totalPages" aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <a class="text-dark btn">Страница</a>
+    <li class="page-item">
+      <a *ngIf="page!==0" class="page-link" (click)="goPrev(page)">Пред.</a></li>
+    <li *ngFor="let pages of totalPages; let i = index" class="page-item">
+      <a class="page-link" (click)="goPage(i)">{{i+1}}</a></li>
+    <li *ngIf="page!==totalPages.length-1" class="page-item">
+      <a class="page-link" (click)="goNext(page)">След.</a></li>
+    <a class="text-dark btn">Кол-во на странце</a>
+    <select name="pageSize"
+            [(ngModel)]="size" (ngModelChange)="loadAllByCountryId()" class="form-control" style="width: 200px">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="4" selected>4</option>
+      <option value="8">8</option>
+    </select>
+  </ul>
+</nav>

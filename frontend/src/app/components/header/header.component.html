@@ -40,23 +40,54 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#">Отзывы</a>
-        <a class="dropdown-item" href="#">Документы на визу</a>
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal" (click)="_openModal(template)">
+          Документы на визу
+        </a>
       </div>
     </div>
 
-    <div class="dropdown">
-      <button class="btn text-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div>
+      <a class="btn text-light" href="#" routerLink="/contacts">
         Контакты
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
+      </a>
     </div>
 
   </div>
 </nav>
+
+<ng-template #template>
+  <div class="container">
+    <h3 class="text-center">Документы на визу</h3>
+    <div>
+      <p>Необходимый пакет документов для подачи на туристическую шенгенскую визу.</p>
+      <p>Обязательный пакет документов для всех категорий заявителей:</p>
+
+      <h6>1. Паспорт.</h6>
+      <p>Он должен быть не старше 10 лет со дня выдачи, а срок действия должен на 3 месяца превышать срок действия от
+        дня запрашиваемой визы и содержать один чистый разворот предусмотренный для виз.
+      </p>
+      <p>- Предоставляется оригинал и ксерокопия последних 2-стр паспорта с персональными данными</p>
+      <p>- Предоставляется ксерокопия шенгенских виз и штампов выезда за последние 3 года</p>
+
+      <h6>2. Фото.</h6>
+      <p>Требуется 2шт., фотография должна быть следующих параметров: цветная на светлом фоне, размер 3,5 на 4,5 см.,
+        быть не старше полугода и лицо должно занимать 70-80% фотографии.
+      </p>
+      <h6>3. Опросный лист.</h6>
+      <p>Образец находится в разделе: «Туристам» - документы на визу», справа внизу.</p>
+
+      <h6>4. Страховой полис.</h6>
+      <p>Должен быть действительным на территории всех стран участниц шенгенского соглашения, страховая сумма возмещения
+        должна быть не менее 30 000 евро или 50 000 долларов. Срок действия страховки минимум месяц.
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+
 
 
 

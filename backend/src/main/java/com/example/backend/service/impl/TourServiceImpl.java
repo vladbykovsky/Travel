@@ -5,6 +5,8 @@ import com.example.backend.entity.Tour;
 import com.example.backend.repository.TourRepository;
 import com.example.backend.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -25,8 +27,8 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public List<Tour> getAllByTransport(String transport) {
-        return tourRepository.getAllByTransport(transport);
+    public Page<Tour> getAllByTransport(String transport, Pageable pageable) {
+        return tourRepository.getAllByTransport(transport, pageable);
     }
 
     @Override
@@ -34,9 +36,15 @@ public class TourServiceImpl implements TourService {
         return tourRepository.getAllByHotelId(id);
     }
 
+//    @Override
+//    public List<Tour> getAllByCountryId(int id) {
+//        return tourRepository.getAllByCountryId(id);
+//    }
+
+
     @Override
-    public List<Tour> getAllByCountryId(int id) {
-        return tourRepository.getAllByCountryId(id);
+    public Page<Tour> getAllByCountry_IdCountry(int id, Pageable pageable) {
+        return tourRepository.getAllByCountry_IdCountry(id, pageable);
     }
 
     @Override
