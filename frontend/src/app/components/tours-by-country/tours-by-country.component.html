@@ -1,5 +1,5 @@
 <div style="background-color: lightgrey; padding-top: 40px; padding-bottom: 40px">
-  <h2 class="text-center">Туры</h2>
+  <h2 class="text-center" *ngIf="tours">Туры/{{tours[1].country.name}}</h2>
 </div>
 <div *ngIf="tours" class="container">
   <div class="row">

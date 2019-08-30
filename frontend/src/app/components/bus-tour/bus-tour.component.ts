@@ -15,6 +15,8 @@ export class BusTourComponent implements OnInit {
   public tours: TourModel[];
   public page: number = 0;
   public size: number = 8;
+  public sort: string = 'price';
+  public order: string = 'low';
   public totalPages: Array<number>;
 
   constructor(private tourService: TourService) { }
@@ -24,7 +26,7 @@ export class BusTourComponent implements OnInit {
   }
 
   public getBusTours():void{
-    this.tourService.getToursByTransport(this.transport, this.page, this.size).subscribe(value=>{
+    this.tourService.getToursByTransport(this.transport, this.page, this.size, this.sort, this.order).subscribe(value=>{
       this.tours = value['content'];
       this.totalPages = new Array<number>(value['totalPages']);
     })

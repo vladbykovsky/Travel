@@ -39,17 +39,13 @@
         Туристам
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Отзывы</a>
+        <a class="dropdown-item" href="#" routerLink="/contacts">
+          Контакты
+        </a>
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal" (click)="_openModal(template)">
           Документы на визу
         </a>
       </div>
-    </div>
-
-    <div>
-      <a class="btn text-light" href="#" routerLink="/contacts">
-        Контакты
-      </a>
     </div>
 
   </div>
@@ -80,6 +76,9 @@
       <p>Должен быть действительным на территории всех стран участниц шенгенского соглашения, страховая сумма возмещения
         должна быть не менее 30 000 евро или 50 000 долларов. Срок действия страховки минимум месяц.
       </p>
+    </div>
+    <div style="padding-right: 40%; padding-left: 40%; padding-bottom: 20px">
+      <button class="btn btn-dark" (click)="closeModal(template)">Закрыть</button>
     </div>
   </div>
 </ng-template>

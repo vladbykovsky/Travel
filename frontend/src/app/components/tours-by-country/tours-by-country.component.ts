@@ -15,7 +15,6 @@ export class ToursByCountryComponent implements OnInit {
   public tours: TourModel[];
   public country: CountryModel;
 
-  public id: number;
   public page: number = 0;
   public size: number = 4;
   public sort: string = "price";

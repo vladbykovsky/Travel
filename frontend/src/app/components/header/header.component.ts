@@ -30,4 +30,8 @@ export class HeaderComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
+  public closeModal(template: TemplateRef<any>): void{
+    this.modalRef.hide();
+  }
+
 }

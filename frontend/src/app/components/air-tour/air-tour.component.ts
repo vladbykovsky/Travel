@@ -12,7 +12,7 @@ export class AirTourComponent implements OnInit {
   public transport: string = "Самолет";
   public tours: TourModel[];
   public page: number = 0;
-  public size: number = 32;
+  public size: number = 8;
   public sort: string = 'price';
   public order: string = 'low';
   public totalPages: Array<number>;
